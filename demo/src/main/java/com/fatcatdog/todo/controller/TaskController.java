@@ -25,7 +25,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8081")
 	@PostMapping(path="/add") 
 	public @ResponseBody String addNewTask (@RequestBody Task task) {
 		try {
@@ -37,7 +37,7 @@ public class TaskController {
 		}
 	}
 	
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8081")
 	@PutMapping(path="/update") 
 	public @ResponseBody String updateTask (@RequestBody Task task) {
 		try {
@@ -49,7 +49,7 @@ public class TaskController {
 		}
 	}
 	
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8081")
 	@GetMapping() 
 	public ResponseEntity<?> getAllTasks() {
 		try {
@@ -61,7 +61,7 @@ public class TaskController {
 		}
 	}
     
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:8081")
    	@DeleteMapping(path="/delete") 
    	public @ResponseBody String deleteTask (@RequestBody Task task) {
    		try {
