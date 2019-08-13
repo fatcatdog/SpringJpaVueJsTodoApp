@@ -19,24 +19,24 @@ public class Task {
 	private String description; 
 	
 	private Date dueDate;
+	
+	private boolean status;
 
-	private Integer stage;
-
-	public Task(Integer id, String name, String description, Date dueDate, Integer stage) {
+	public Task(Integer id, String name, String description, Date dueDate, boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
-		this.stage = stage;
+		this.status = status;
 	}
 	
-	public Task(String name, String description, Date dueDate, Integer stage) {
+	public Task(String name, String description, Date dueDate, boolean status) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
-		this.stage = stage;
+		this.status = status;
 	}
 	
 	public Task() {super();}
@@ -73,16 +73,12 @@ public class Task {
 		this.dueDate = dueDate;
 	}
 
-	public Integer getStage() {
-		return stage;
+	public boolean isStatus() {
+		return status;
 	}
 
-	public void setStage(Integer stage) {
-		this.stage = stage;
-	} 
-	
-	
-	
-	
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 }

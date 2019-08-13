@@ -21,8 +21,8 @@ public class DataLoader implements ApplicationRunner {
 		// TODO Auto-generated method stub
 		Date date = new Date();
 		
-		taskService.save(new Task("first task", "first description", date, 1));
-		taskService.save(new Task("second task", "second description", date, 1));
+		taskService.save(new Task("first task", "first description", date, false));
+		taskService.save(new Task("second task", "second description", date, false));
 	}
 
 }

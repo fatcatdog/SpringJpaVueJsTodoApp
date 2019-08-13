@@ -1,5 +1,7 @@
 package com.fatcatdog.todo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,10 @@ public class TaskService {
 	
 	public void delete(Task task) {
 		taskRepository.delete(task);
+	}
+	
+	public Optional<Task> getTask(int id) {
+		return taskRepository.findById(id);
 	}
 	
 }
