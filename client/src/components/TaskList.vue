@@ -99,6 +99,7 @@
       },
       //ive never done this before. We are looking over inner html values of date
       //to check if they are in the past and then adding red styling to show user they are outdated
+      //checking is date is in the past (there are edge cases where this breaks)
       async addOutdatedStyling() {
         var table = document.getElementById("ourTable");
         for (let row of table.rows)
