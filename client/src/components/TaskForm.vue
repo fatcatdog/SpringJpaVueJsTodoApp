@@ -7,17 +7,32 @@
        ref="first"
        type="text"
        v-model="task.name"
+       :class="{ 'has-error': submitting && invalidName }"
+       @focus="clearStatus"
+       @keypress="clearStatus"
      >
      <label>Task Description</label>
       <input
         ref="first"
         type="text"
         v-model="task.description"
+        :class="{ 'has-error': submitting && invalidDescription }"
+        @focus="clearStatus"
+        @keypress="clearStatus"
       >
       <label>Task Due Date</label>
 
-      <datepicker v-model="task.dueDate" placeholder="Select Date"></datepicker>
-
+      <datepicker
+        v-model="task.dueDate"
+        placeholder="Select Date"
+        :class="{ 'has-error': submitting && invalidDueDate }"
+        @focus="clearStatus"
+        @keypress="clearStatus"
+      >
+        </datepicker>
+        <p v-if="error && submitting" class="error-message">
+            Please fill out all required fields. It looks like one of the fields is empty :(
+          </p>
       <button type="submit" @click.stop.prevent="handleSubmit">Submit</button>
     </form>
   </div>
@@ -36,6 +51,8 @@ export default {
 
   data() {
     return {
+      submitting: false,
+      error: false,
       success: false,
       task: {
         name: '',
@@ -47,6 +64,14 @@ export default {
   },
   methods: {
     handleSubmit() {
+      this.submitting = true
+      this.clearStatus()
+
+      if (this.invalidName || this.invalidDescription || this.invalidDueDate || this.invalidStatus) {
+         this.error = true
+         return
+       }
+
       this.addTask(this.task)
       this.task = {
         name: '',
@@ -70,7 +95,26 @@ export default {
       }
       this.$router.push("/");
     },
-  }}
+    clearStatus() {
+      this.success = false
+      this.error = false
+    },
+  },
+  computed: {
+    invalidName() {
+      return this.task.name === ''
+    },
+    invalidDescription() {
+      return this.task.description === ''
+    },
+    invalidDueDate() {
+      return this.task.dueDate === ''
+    },
+    invalidStatus() {
+      return this.task.status === ''
+    },
+  },
+  }
 </script>
 
 <style scoped>
@@ -85,5 +129,11 @@ form {
 }
 .success-message {
   color: #32a95d;
+}
+[class*='-message'] {
+  font-weight: 500;
+}
+.error-message {
+  color: #d33c40;
 }
 </style>

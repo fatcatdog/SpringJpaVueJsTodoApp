@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//Entity is used by Spring JPA to generate a table for Task in DB
 @Entity
 public class Task {
 	

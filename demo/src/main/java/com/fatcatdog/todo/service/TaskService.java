@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.fatcatdog.todo.model.Task;
 import com.fatcatdog.todo.repository.TaskRepository;
 
+//@Service  brings in appropriate beans
+//This class brings in an instance of our TaskRepository to add more abstraction user from DB
 @Service
 public class TaskService {
 

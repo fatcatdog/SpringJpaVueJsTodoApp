@@ -1,6 +1,5 @@
 package com.fatcatdog.todo.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fatcatdog.todo.model.Task;
 import com.fatcatdog.todo.service.TaskService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+//this is the controller for application. API annotation is for Swagger configuration, 
+//controller brings in appropriate java beans, request mapping preludes all endpoints with "api"
+
+@Api(value="Task REST API ")
 @Controller   
 @RequestMapping(path="/api") 
 public class TaskController {
@@ -28,6 +33,7 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
+	@ApiOperation(value = "Add a task")
     @CrossOrigin(origins = "http://localhost:8080")
 	@PostMapping(path="/add") 
 	public @ResponseBody String addNewTask (@RequestBody Task task) {
@@ -40,6 +46,7 @@ public class TaskController {
 		}
 	}
 	
+	@ApiOperation(value = "Update a task")
     @CrossOrigin(origins = "http://localhost:8080")
 	@PutMapping(path="/update") 
 	public @ResponseBody String updateTask (@RequestBody Task task) {
@@ -52,8 +59,9 @@ public class TaskController {
 		}
 	}
 	
+	@ApiOperation(value = "Get all tasks")
     @CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping() 
+	@GetMapping("/tasks") 
 	public ResponseEntity<?> getAllTasks() {
 		try {
     		Iterable<Task> tempTasks = taskService.getAllTasks();
@@ -64,6 +72,7 @@ public class TaskController {
 		}
 	}
     
+	@ApiOperation(value = "Get a task by Task id(int)")
     @CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping(path = "/get/{id}") 
 	public ResponseEntity<?> getTaskById(@PathVariable(name = "id") int id) {
@@ -76,6 +85,7 @@ public class TaskController {
 		}
 	}
     
+	@ApiOperation(value = "Delete a task")
     @CrossOrigin(origins = "http://localhost:8080")
    	@DeleteMapping(path="/delete") 
    	public @ResponseBody String deleteTask (@RequestBody Task task) {

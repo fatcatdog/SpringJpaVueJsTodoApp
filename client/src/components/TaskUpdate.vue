@@ -15,6 +15,7 @@
         v-model="task.description"
       >
       <label>Task Due Date</label>
+      <!-- We used VueJsDatePicker to render the fancy calendar on this page -->
 
       <datepicker v-model="task.dueDate" placeholder="Select Date"></datepicker>
       <label>Task Status (If complete please check box)</label>
@@ -24,13 +25,18 @@
          v-model="task.status"
        >
        <p></p>
+       <!-- This v-if statement renders an error if present  -->
+       <div>
+         <p v-if="error && submitting" class="error-message">
+             Please fill out all required fields. It looks like one of the fields is empty :(
+         </p>
+       </div>
        <div class="updateButtonLeft">
-      <button type="submit" @click.stop.prevent="handleSubmit">Submit</button>
+          <button type="submit" @click.stop.prevent="handleSubmit">Submit</button>
       </div>
       <div class="updateButtonRight">
-      <button type="submit" @click.stop.prevent="deleteTask">Delete</button>
+          <button type="submit" @click.stop.prevent="deleteTask">Delete</button>
       </div>
-
     </form>
   </div>
 </template>
@@ -47,7 +53,10 @@ export default {
 
   data() {
     return {
-      success: false,
+    //these variables are used to assist error handling
+      submitting: false,
+      error: false,
+    //our task object is what we really care about here
       task: {
         name: '',
         description: '',
@@ -57,11 +66,24 @@ export default {
     }
   },
   mounted() {
+  //loading correct task that user wants to update with a fetch to RestAPI
     this.getTask()
   },
   methods: {
     handleSubmit() {
+    //error handling portion (just checking if not == "")
+      this.submitting = true
+      this.clearStatus()
+
+      if (this.invalidName || this.invalidDescription || this.invalidDueDate || this.invalidStatus) {
+         this.error = true
+         return
+       }
+       //sending post to REST API
+
       this.addTask(this.task)
+
+      //reseting empty object for form
       this.task = {
         name: '',
         description: '',
@@ -69,6 +91,7 @@ export default {
         status: ''
       }
     },
+    //our GET method to fetch from DB with user selected id from taskList from url param
     async getTask(task) {
       const tempId = this.$route.params.id;
       try {
@@ -79,6 +102,7 @@ export default {
         console.log(error)
       }
     },
+    //our POST method to REST API fetch
     async addTask(task) {
       try {
         const response = await fetch('http://localhost:8081/api/add', {
@@ -94,16 +118,9 @@ export default {
       }
       this.$router.push("/");
     },
+    //our DELETE method for REST API fetch
     async deleteTask(){
-      console.log("deleted");
       const task = this.task;
-
-      console.log("id: " + task.id);
-      console.log("name: " + task.name);
-      console.log("dueDate: " + task.dueDate);
-      console.log("description: " + task.description);
-      console.log("status: " + task.status);
-
       try {
         const response = await fetch('http://localhost:8081/api/delete', {
         method: 'DELETE',
@@ -118,9 +135,29 @@ export default {
       }
       this.$router.push("/");
     },
-  }}
+    //resetting error messages
+    clearStatus() {
+      this.error = false
+    },
+  },
+  //our computed methods to help with error handling
+  computed: {
+    invalidName() {
+      return this.task.name === ''
+    },
+    invalidDescription() {
+      return this.task.description === ''
+    },
+    invalidDueDate() {
+      return this.task.dueDate === ''
+    },
+    invalidStatus() {
+      return this.task.status === ''
+    },
+  },
+  }
 </script>
-
+//our styling
 <style scoped>
 form {
   margin-bottom: 2rem;
@@ -129,18 +166,15 @@ form {
   font-weight: 500;
 }
 .error-message {
-  color: #d33c40;
-}
-.success-message {
-  color: #32a95d;
+  color: red;
 }
 
 .updateButtonRight{
-float: right;
+  float: right;
 }
 
 .updateButtonLeft{
-float: left;
+  float: left;
 }
 
 </style>
