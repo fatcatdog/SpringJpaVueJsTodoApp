@@ -9,15 +9,21 @@ This is a "todo" or "task manager" CRUD app build with SpringBoot,SpringREST,Spr
 ------------------------------------------------------------
 To run with Docker
 ------------------------------------------------------------
-If you notice the contents of application.properties difers from the following, please replace the contents of /demo/src/main/resources/application.properties with:
+To use the docker commands i have typed below (still a work in progress), please ensure your Application.properties located at /demo/src/main/resources/application.properties contains the following information.  
 
-Change application.properties from
+
 spring.datasource.url=jdbc:mysql://mysql-standalone:3306/tododb
+
 spring.datasource.username=user
+
 spring.datasource.password=password
+
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+
 spring.jpa.hibernate.ddl-auto = update
+
 server.error.whitelabel.enabled=false
+
 server.port=8081
 
 I am in the process of setting these projects up to work with Docker. You would need to have Docker running to do this. Here are the current commands to getting the MySql Server running, the Java app running, and the VueJs project running all in individual containers.
@@ -56,7 +62,7 @@ At this point you should have three containers running after you type this comma
 
 Docker ps
 
-If you see three images running, maybe the application is running and you should check the Vue.js' app's logs to see where it is hosted! 
+If you see three images running, maybe the application is running and you should check the Vue.js' app's logs to see where it is hosted!
 
 ------------------------------------------------------------
 To run locally (without Docker)
@@ -67,12 +73,19 @@ Clone the repo. Open your preferred Java IDE of choice, import as maven project.
 Please replace the contents of /demo/src/main/resources/application.properties with:
 
 #### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYourYouWantYourDBSchemaIsNamed?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+
 #### spring.datasource.username=whateverYourMysqlUsernameIs
+
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+
 spring.jpa.hibernate.ddl-auto = update
+
 server.error.whitelabel.enabled=false
+
 server.port=8081
+
 #### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYouWantToNameTheDB
+
 (Notice the bolded lines have variables in them that need to be changed to your setup)
 
 Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.
