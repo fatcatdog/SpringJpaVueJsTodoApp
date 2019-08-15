@@ -1,4 +1,4 @@
-This is a "todo" or "task manager" CRUD app. On my machine I have Docker(optional), Node.js, npm, Java 8, and MySql 8 installed. I was on a Mac when I built these apps so Windows commands likely are different.
+This is a "todo" or "task manager" CRUD app. On my machine I have Docker(optional), Node.js, npm, Maven,Java 8, and MySql 8 installed. I was on a Mac when I built these apps so Windows commands likely are different.
 
 This fullstack application contains the following:
 -Java 8, SpringBoot, JPA, MySql backend
