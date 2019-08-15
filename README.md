@@ -6,6 +6,12 @@ This is a "todo" or "task manager" CRUD app build with SpringBoot,SpringREST,Spr
 
 ![Users can update or delete a task](/images/updateTask.png)
 
+This fullstack application contains the following:
+-Java 8, SpringBoot, JPA, MySql backend
+-VueJs frontend
+
+At the top of this read.me i provided instructions to run with Docker. Below the Docker instructions there are instructions to run these applications locally without Docker. 
+
 ------------------------------------------------------------
 To run with Docker
 ------------------------------------------------------------
