@@ -20,40 +20,9 @@ spring.jpa.hibernate.ddl-auto = update
 server.error.whitelabel.enabled=false
 server.port=8081
 
-------------------------------------------------------------
-To run locally (without Docker)
-------------------------------------------------------------
-
-Clone the repo. Open your preferred Java IDE of choice, import as maven project.
-
-Please replace the contents of /demo/src/main/resources/application.properties with:
-
-####spring.datasource.url=jdbc:mysql://localhost:3306/whateverYourYouWantYourDBSchemaIsNamed?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-#### spring.datasource.username=whateverYourMysqlUsernameIs
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
-spring.jpa.hibernate.ddl-auto = update
-server.error.whitelabel.enabled=false
-server.port=8081
-#### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYouWantToNameTheDB
-(Notice the bolded lines have variables in them that need to be changed to your setup)
-
-Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.
-
-Or you can run with maven: CD into the project and then: mvn spring-boot:run
-
-The demo folder is the SpringBoot project. This project runs on port 8081.To view available REST endpoints, please visit http://localhost:8081/swagger-ui.html#/ after running project which exposes the Swagger UI.
-
-------------------------------------------------------------
-The client folder in this repo is the Vue.js project. This runs on port 8080.
-------------------------------------------------------------
-
-CD into client, then do the following:
-npm install
-npm run serve
-
 I am in the process of setting these projects up to work with Docker. You would need to have Docker running to do this. Here are the current commands to getting the MySql Server running, the Java app running, and the VueJs project running all in individual containers.
 (I ran Docker with MySqlServer 5.7. Make sure these DB settings match your application.properties file in the Java app)
-docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d mysql:5.7
+
 
 ------------------------------------------------------------
 We are first going to get our MySql Server running in Docker.
@@ -86,6 +55,41 @@ docker run -it -p 8080:8080 --rm --name client client
 At this point you should have three containers running after you type this command in terminal:
 
 Docker ps
+
+If you see three images running, maybe the application is running and you should check the Vue.js' app's logs to see where it is hosted! 
+
+------------------------------------------------------------
+To run locally (without Docker)
+------------------------------------------------------------
+
+Clone the repo. Open your preferred Java IDE of choice, import as maven project.
+
+Please replace the contents of /demo/src/main/resources/application.properties with:
+
+#### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYourYouWantYourDBSchemaIsNamed?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+#### spring.datasource.username=whateverYourMysqlUsernameIs
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+spring.jpa.hibernate.ddl-auto = update
+server.error.whitelabel.enabled=false
+server.port=8081
+#### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYouWantToNameTheDB
+(Notice the bolded lines have variables in them that need to be changed to your setup)
+
+Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.
+
+Or you can run with maven: CD into the project and then: mvn spring-boot:run
+
+The demo folder is the SpringBoot project. This project runs on port 8081.To view available REST endpoints, please visit http://localhost:8081/swagger-ui.html#/ after running project which exposes the Swagger UI.
+
+------------------------------------------------------------
+The client folder in this repo is the Vue.js project. This runs on port 8080.
+------------------------------------------------------------
+
+CD into client, then do the following:
+npm install
+npm run serve
+
+If you ran the java app previously, you should now be able to see some pre-populated items in our task list. If you havent ran the java app yet, you hopefully can see an empty todoApp with no tasks inputted yet (and no database...)!
 
 ------------------------------------------------------------
 Happy coding and feel free to message me if you have any problems/questions
