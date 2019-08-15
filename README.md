@@ -1,4 +1,10 @@
-This is a "todo" CRUD app build with SpringBoot,SpringREST,Spring JPA, mySql, and VueJs. On my machine I have Java 8 and MySql 8 installed.
+This is a "todo" or "task manager" CRUD app build with SpringBoot,SpringREST,Spring JPA, mySql, and VueJs. On my machine I have Java 8 and MySql 8 installed.
+
+![Users can see all tasks](/images/pictureOfTodoApp.png)
+
+![Users can add a task](/images/submitNew.png)
+
+![Users can update or delete a task](/images/updateTask.png)
 
 ------------------------------------------------------------
 To run with Docker

@@ -32,7 +32,7 @@
          </p>
        </div>
        <div class="updateButtonLeft">
-          <button type="submit" @click.stop.prevent="handleSubmit">Submit</button>
+          <button type="submit" @click.stop.prevent="handleSubmit">Update</button>
       </div>
       <div class="updateButtonRight">
           <button type="submit" @click.stop.prevent="deleteTask">Delete</button>
