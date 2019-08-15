@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fatcatdog.todo.model.Task;
 import com.fatcatdog.todo.service.TaskService;
@@ -34,67 +33,74 @@ public class TaskController {
 	private TaskService taskService;
 
 	@ApiOperation(value = "Add a task")
-    @CrossOrigin(origins = "http://localhost:8080")
-	@PostMapping(path="/add") 
-	public @ResponseBody String addNewTask (@RequestBody Task task) {
+    @CrossOrigin(origins = "*")
+	@PostMapping(path="/add", produces = "application/json; charset=UTF-8") 
+	public ResponseEntity<?> addNewTask (@RequestBody Task task) {
+
 		try {
 			taskService.save(task);
-			return "Saved";
+
+			return new ResponseEntity<>(HttpStatus.OK) ;
 		} catch (Exception e) {
 			System.out.println(e);
-			return "Not saved :(";
+
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
 	
 	@ApiOperation(value = "Update a task")
-    @CrossOrigin(origins = "http://localhost:8080")
-	@PutMapping(path="/update") 
-	public @ResponseBody String updateTask (@RequestBody Task task) {
+    @CrossOrigin(origins = "*")
+	@PutMapping(path="/update",  produces = "application/json; charset=UTF-8") 
+	public ResponseEntity<?> updateTask (@RequestBody Task task) {
+			        
 		try {
 			taskService.save(task);
-			return "Updated";
+			return new ResponseEntity<>(HttpStatus.OK) ;
 		} catch (Exception e) {
 			System.out.println(e);
-			return "Not saved :(";
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST) ;
 		}
 	}
 	
 	@ApiOperation(value = "Get all tasks")
-    @CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping("/tasks") 
+    @CrossOrigin(origins = "*")
+	@GetMapping(path = "/tasks",  produces = "application/json; charset=UTF-8") 
 	public ResponseEntity<?> getAllTasks() {
 		try {
     		Iterable<Task> tempTasks = taskService.getAllTasks();
     		return new ResponseEntity<>(tempTasks, HttpStatus.OK); 
 		} catch (Exception e) {
 			System.out.println(e);
-    		return new ResponseEntity<>("We Failed You", HttpStatus.BAD_REQUEST); 
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
     
 	@ApiOperation(value = "Get a task by Task id(int)")
-    @CrossOrigin(origins = "http://localhost:8080")
-	@GetMapping(path = "/get/{id}") 
+    @CrossOrigin(origins = "*")
+	@GetMapping(path = "/get/{id}",  produces = "application/json; charset=UTF-8") 
 	public ResponseEntity<?> getTaskById(@PathVariable(name = "id") int id) {
 		try {
     		Optional<Task> tempTask = taskService.getTask((id));
     		return new ResponseEntity<>(tempTask, HttpStatus.OK); 
 		} catch (Exception e) {
 			System.out.println(e);
-    		return new ResponseEntity<>("We Failed You", HttpStatus.BAD_REQUEST); 
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
     
 	@ApiOperation(value = "Delete a task")
-    @CrossOrigin(origins = "http://localhost:8080")
-   	@DeleteMapping(path="/delete") 
-   	public @ResponseBody String deleteTask (@RequestBody Task task) {
-   		try {
+    @CrossOrigin(origins = "*")
+   	@DeleteMapping(path="/delete", produces = "application/json; charset=UTF-8") 
+   	public ResponseEntity<?> deleteTask (@RequestBody Task task) {
+
+		try {
    			taskService.delete(task);
-   			return "Deleted";
+   	        
+    		return new ResponseEntity<>(HttpStatus.OK); 
    		} catch (Exception e) {
    			System.out.println(e);
-   			return "Not deleted :(";
+
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
    		}
    	}
 	

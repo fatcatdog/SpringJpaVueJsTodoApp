@@ -59,7 +59,7 @@ export default {
         description: '',
         dueDate: '',
         status: false,
-      }
+      },
     }
   },
   methods: {
@@ -73,6 +73,7 @@ export default {
        }
 
       this.addTask(this.task)
+
       this.task = {
         name: '',
         description: '',
@@ -80,6 +81,7 @@ export default {
         status: false,
       }
     },
+
     async addTask(task) {
       try {
         const response = await fetch('http://localhost:8081/api/add', {
@@ -88,10 +90,8 @@ export default {
         headers: { "Content-type": "application/json; charset=UTF-8" }
       })
         const data = await response.json()
-
-        this.tasks = [...this.tasks, data]
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       this.$router.push("/");
     },

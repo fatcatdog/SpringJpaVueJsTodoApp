@@ -2,27 +2,40 @@ package com.fatcatdog.todo.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 //Entity is used by Spring JPA to generate a table for Task in DB
+
 @Entity
+@Table(name = "task")
 public class Task {
 	
+    @JsonProperty
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Integer id;
 	
+    @JsonProperty
 	private String name;
 	
+    @JsonProperty
 	private String description; 
 	
+    @JsonProperty
 	private Date dueDate;
 	
+    @JsonProperty
 	private boolean status;
 
+    
 	public Task(Integer id, String name, String description, Date dueDate, boolean status) {
 		super();
 		this.id = id;
@@ -38,6 +51,14 @@ public class Task {
 		this.description = description;
 		this.dueDate = dueDate;
 		this.status = status;
+	}
+	
+	public Task(String name, String description, Date dueDate) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.dueDate = dueDate;
+		this.status = false;
 	}
 	
 	public Task() {super();}

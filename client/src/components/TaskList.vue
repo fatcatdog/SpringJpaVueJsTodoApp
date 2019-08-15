@@ -63,7 +63,7 @@
            try {
              const response = await fetch('http://localhost:8081/api/tasks')
              const data = await response.json()
-             this.tasks = data
+             this.tasks =  data
            } catch (error) {
              console.error(error)
            }

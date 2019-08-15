@@ -111,10 +111,8 @@ export default {
         headers: { "Content-type": "application/json; charset=UTF-8" }
       })
         const data = await response.json()
-
-        this.tasks = [...this.tasks, data]
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       this.$router.push("/");
     },
@@ -128,10 +126,8 @@ export default {
         headers: { "Content-type": "application/json; charset=UTF-8" }
       })
         const data = await response.json()
-
-        this.tasks = [...this.tasks, data]
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       this.$router.push("/");
     },
