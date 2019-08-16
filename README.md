@@ -30,7 +30,7 @@ You should see three docker containers running.
 
 #### You can view more information about the task REST API running in our SpringBoot project at our Swagger UI which is hosted at: http://localhost:8081/swagger-ui.html
 
-#### If you do not want to use Docker Compose, here are instructions to run with just Docker:
+# If you do not want to use Docker Compose, here are instructions to run with just Docker:
 
 ------------------------------------------------------------
 1. Pull MySql container and run MySql Server container
@@ -90,7 +90,7 @@ If you see three images running, maybe the application is running and you should
 -->
 
 ------------------------------------------------------------
-To run locally (without Docker)
+# To run locally (without Docker)
 ------------------------------------------------------------
 
 Clone the repo. Open your preferred Java IDE of choice, import as maven project.
