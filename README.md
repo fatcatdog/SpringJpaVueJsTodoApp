@@ -1,6 +1,6 @@
-This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Toward the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ.
+This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Towards the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ.
 
-This fullstack application contains the following:
+This full-stack application contains the following:
 
 -MySql database
 
@@ -14,7 +14,7 @@ At the top of this README.md i provide instructions to run with Docker Compose, 
 
 I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open.
 
-#### To Run Project with Docker Compose
+# To Run Project with Docker Compose
 
 Please clone this repo. Please CD into project. (You could also just copy the docker-compose.yml from repo into a folder of your choice on local and CD into that folder) Run:
 
@@ -126,8 +126,8 @@ The client folder in this repo is the Vue.js project. This runs on port 8080.
 UI was not a priority for this project. In public/index.html of the client app, I simply imported: unpkg.com/primitive-ui/dist/css/main.css in the header
 
 CD into client, then do the following:
-npm install
-npm run serve
+#### npm install
+#### npm run serve
 
 If you ran the java app previously, you should now be able to see some pre-populated items in our task list. If you havent ran the java app yet, you hopefully can see an empty todoApp with no tasks inputted yet (and no database...)!
 
