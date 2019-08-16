@@ -1,9 +1,12 @@
 This is a "todo" or "task manager" CRUD app. On my local machine I have Docker(optional), Node.js, npm, Maven, Java 8, and MySql 8 running. I was on a Mac when I built these apps so Windows terminal commands likely differ.
 
 This fullstack application contains the following:
+
 -MySql database
--Java 8, SpringBoot, JPA
--VueJs frontend
+
+-Java 8, SpringBoot, JPA (located in the demo folder of this repo)
+
+-VueJs frontend  (located in the client folder of this repo)
 
 ![Users can see all tasks](/images/pictureOfTodoApp.png)
 
