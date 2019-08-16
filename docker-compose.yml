@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+# docker pull mysql:5.7
+#
+# docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d mysql:5.7
+  mysql-standalone:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=tododb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - DATABASE_PORT=3306
+    expose:
+      - '3306'
+# docker pull ducheman/ourjavaapp:firsttry
+#
+# docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
+  ourjavaapp:
+    image: ducheman/ourjavaapp:firsttry
+    ports:
+      - "8081:8081"
+
+# docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
+  ourclientapp:
+    image: ducheman/vuejsclient:firsttry
+    ports:
+      - "8080:8080"
