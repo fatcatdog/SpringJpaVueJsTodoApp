@@ -1,65 +1,54 @@
-This is a "todo" or "task manager" CRUD app. On my machine I have Docker(optional), Node.js, npm, Maven,Java 8, and MySql 8 installed. I was on a Mac when I built these apps so Windows commands likely are different.
+This is a "todo" or "task manager" CRUD app. On my local machine I have Docker(optional), Node.js, npm, Maven, Java 8, and MySql 8 running. I was on a Mac when I built these apps so Windows terminal commands likely differ.
 
 This fullstack application contains the following:
--Java 8, SpringBoot, JPA, MySql backend
+-MySql database
+-Java 8, SpringBoot, JPA
 -VueJs frontend
-
-At the top of this read.me i provided instructions to run with Docker. Below the Docker instructions there are instructions to run these applications locally without Docker.
 
 ![Users can see all tasks](/images/pictureOfTodoApp.png)
 
-![Users can add a task](/images/submitNew.png)
+At the top of this README.md i provide instructions to run with Docker Compose, below that i provided instructions for just Docker, and below that I provided instructions on how to run these applications locally without Docker.
 
-![Users can update or delete a task](/images/updateTask.png)
+I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open.
 
-UI was not a priority for this project. In public/index.html I simply imported:
+#### To Run Project with Docker Compose
 
-<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+Please clone this repo. Please CD into project. (You could also just copy the docker-compose.yml from repo into a folder of your choice on local and CD into that folder) Run:
 
-------------------------------------------------------------
-To run with Docker
-------------------------------------------------------------
-To use the docker commands i have typed below (still a work in progress), please ensure your Application.properties located at /demo/src/main/resources/application.properties contains the following information.  
+## docker-compose up
 
-spring.datasource.url=jdbc:mysql://mysql-standalone:3306/tododb
+At this point the projects should be pulled and ran. It might take a few minutes if your internet connection is slow. To confirm our three Docker containers are running, please open a new tab in terminal and run:
 
-spring.datasource.username=user
+docker ps
 
-spring.datasource.password=password
+You should see three docker containers running.
 
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+#### Our client VueJs is running at: http://localhost:8080
 
-spring.jpa.hibernate.ddl-auto = update
+#### You can view more information about the task REST API running in our SpringBoot project at our Swagger UI which is hosted at: http://localhost:8081/swagger-ui.html
 
-server.error.whitelabel.enabled=false
-
-server.port=8081
-
-I am in the process of setting these projects up to work with Docker. You would need to have Docker running to do this. Here are the current commands to getting the MySql Server running, the Java app running, and the VueJs project running all in individual containers.
-(I ran Docker with MySqlServer 5.7. Make sure these DB settings match your application.properties file in the Java app)
-
-I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open. 
+#### If you do not want to use Docker Compose, here are instructions to run with just Docker:
 
 ------------------------------------------------------------
 1. Pull MySql container and run MySql Server container
 ------------------------------------------------------------
-docker pull mysql:5.7
+#### docker pull mysql:5.7
 
-docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d mysql:5.7
+#### docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d mysql:5.7
 
 ------------------------------------------------------------
 2. Pull Java app container and run app linked to MySql Server container
 ------------------------------------------------------------
 
-docker pull ducheman/ourjavaapp:firsttry
+#### docker pull ducheman/ourjavaapp:firsttry
 
-jacobs-Air:~ jacob$ docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
+#### docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
 
 ------------------------------------------------------------
 3. Pull VueJs client container and run container
 ------------------------------------------------------------
 
-docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
+#### docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
 
 <!---
 ------------------------------------------------------------
@@ -119,7 +108,7 @@ server.port=8081
 
 #### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYouWantToNameTheDB
 
-(Notice the bolded lines have variables in them that need to be changed to your setup)
+(Notice the bolded lines in application.properties here have variables in them that need to be changed to match your local setup)
 
 Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.
 
@@ -131,11 +120,23 @@ The demo folder is the SpringBoot project. This project runs on port 8081.To vie
 The client folder in this repo is the Vue.js project. This runs on port 8080.
 ------------------------------------------------------------
 
+UI was not a priority for this project. In public/index.html of the client app, I simply imported:
+
+<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+
 CD into client, then do the following:
 npm install
 npm run serve
 
 If you ran the java app previously, you should now be able to see some pre-populated items in our task list. If you havent ran the java app yet, you hopefully can see an empty todoApp with no tasks inputted yet (and no database...)!
+
+![Users can add a task](/images/submitNew.png)
+
+Image of adding new Task
+
+![Users can update or delete a task](/images/updateTask.png)
+
+Image of updating or deleting a task.
 
 ------------------------------------------------------------
 Happy coding and feel free to message me if you have any problems/questions
