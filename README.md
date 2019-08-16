@@ -123,9 +123,7 @@ The demo folder is the SpringBoot project. This project runs on port 8081.To vie
 The client folder in this repo is the Vue.js project. This runs on port 8080.
 ------------------------------------------------------------
 
-UI was not a priority for this project. In public/index.html of the client app, I simply imported:
-
-"<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />"
+UI was not a priority for this project. In public/index.html of the client app, I simply imported: unpkg.com/primitive-ui/dist/css/main.css in the header 
 
 CD into client, then do the following:
 npm install
