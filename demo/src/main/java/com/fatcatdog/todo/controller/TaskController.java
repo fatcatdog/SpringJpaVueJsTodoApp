@@ -2,6 +2,8 @@ package com.fatcatdog.todo.controller;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fatcatdog.todo.DemoApplication;
 import com.fatcatdog.todo.model.Task;
 import com.fatcatdog.todo.service.TaskService;
 
@@ -28,6 +31,8 @@ import io.swagger.annotations.ApiOperation;
 @Controller   
 @RequestMapping(path="/api") 
 public class TaskController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
 	@Autowired
 	private TaskService taskService;
@@ -39,11 +44,10 @@ public class TaskController {
 
 		try {
 			taskService.save(task);
-
+		    logger.info("TaskController - addNewTask: " + task);
 			return new ResponseEntity<>(HttpStatus.OK) ;
 		} catch (Exception e) {
-			System.out.println(e);
-
+		    logger.error("TaskController - addNewTask: " + e);
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
@@ -55,9 +59,10 @@ public class TaskController {
 			        
 		try {
 			taskService.save(task);
+		    logger.info("TaskController - updateTask: " + task);
 			return new ResponseEntity<>(HttpStatus.OK) ;
 		} catch (Exception e) {
-			System.out.println(e);
+		    logger.error("TaskController - updateTask: " + e);			
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST) ;
 		}
 	}
@@ -68,9 +73,11 @@ public class TaskController {
 	public ResponseEntity<?> getAllTasks() {
 		try {
     		Iterable<Task> tempTasks = taskService.getAllTasks();
+		    logger.info("TaskController - getAllTasks: " + tempTasks);
     		return new ResponseEntity<>(tempTasks, HttpStatus.OK); 
 		} catch (Exception e) {
 			System.out.println(e);
+		    logger.error("TaskController - getAllTasks: " + e);
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
@@ -81,9 +88,10 @@ public class TaskController {
 	public ResponseEntity<?> getTaskById(@PathVariable(name = "id") int id) {
 		try {
     		Optional<Task> tempTask = taskService.getTask((id));
+		    logger.info("TaskController - getTaskById: " + " id: " + id  + " task: " + tempTask);
     		return new ResponseEntity<>(tempTask, HttpStatus.OK); 
 		} catch (Exception e) {
-			System.out.println(e);
+		    logger.error("TaskController - getTaskById: " + e);
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
 		}
 	}
@@ -95,11 +103,10 @@ public class TaskController {
 
 		try {
    			taskService.delete(task);
-   	        
+		    logger.info("TaskController - deleteTask: " + task);
     		return new ResponseEntity<>(HttpStatus.OK); 
    		} catch (Exception e) {
-   			System.out.println(e);
-
+		    logger.error("TaskController - deleteTask: " + e);
     		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
    		}
    	}

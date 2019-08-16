@@ -18,7 +18,7 @@ services:
 #
 # docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
   ourjavaapp:
-    image: ducheman/ourjavaapp:firsttry
+    image: ducheman/ourjavaapp:secondtry
     ports:
       - "8081:8081"
 

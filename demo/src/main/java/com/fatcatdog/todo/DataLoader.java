@@ -14,6 +14,7 @@ import com.fatcatdog.todo.service.TaskService;
 //This class inputs 3 objects into the database upon booting up the application. 
 //I set spring.jpa.hibernate.ddl-auto=create-drop in Application.properties, so the 
 //database is dropped every time the application is stopped/started. 
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -27,8 +28,10 @@ public class DataLoader implements ApplicationRunner {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date oldDate = format.parse("2009-12-31");
 
+		//this inputs three new objects into DB every time application is run. 
+		
 		taskService.save(new Task("first task", "first description", date, false));
-		taskService.save(new Task("second task", "second description", date, false));
+		taskService.save(new Task("second task", "second description", date, true));
 		taskService.save(new Task("third task", "third description third description third description third description", oldDate, false));
 
 	}
