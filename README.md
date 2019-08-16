@@ -1,4 +1,4 @@
-This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Towards the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ.
+This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Towards the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ. I still am in the process of implementing testing and logging functionalities.
 
 This full-stack application contains the following:
 
