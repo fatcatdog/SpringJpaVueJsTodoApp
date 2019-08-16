@@ -8,11 +8,11 @@ This full-stack application contains the following:
 
 -VueJs frontend  (located in the client folder of this repo)
 
-![Users can see all tasks](/images/pictureOfTodoApp.png)
-
 At the top of this README.md i provide instructions to run with Docker Compose, below that i provided instructions for just Docker, and below that I provided instructions on how to run these applications locally without Docker.
 
 I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open.
+
+![Users can see all tasks](/images/pictureOfTodoApp.png)
 
 # To Run Project with Docker Compose
 
