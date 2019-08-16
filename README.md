@@ -1,4 +1,4 @@
-This is a "todo" or "task manager" CRUD app. On my local machine I have Docker(optional), Node.js, npm, Maven, Java 8, and MySql 8 running. I was on a Mac when I built these apps so Windows terminal commands likely differ.
+This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Toward the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ.
 
 This fullstack application contains the following:
 
@@ -123,7 +123,7 @@ The demo folder is the SpringBoot project. This project runs on port 8081.To vie
 The client folder in this repo is the Vue.js project. This runs on port 8080.
 ------------------------------------------------------------
 
-UI was not a priority for this project. In public/index.html of the client app, I simply imported: unpkg.com/primitive-ui/dist/css/main.css in the header 
+UI was not a priority for this project. In public/index.html of the client app, I simply imported: unpkg.com/primitive-ui/dist/css/main.css in the header
 
 CD into client, then do the following:
 npm install
