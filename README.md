@@ -125,7 +125,7 @@ The client folder in this repo is the Vue.js project. This runs on port 8080.
 
 UI was not a priority for this project. In public/index.html of the client app, I simply imported:
 
-<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+"<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />"
 
 CD into client, then do the following:
 npm install
