@@ -4,7 +4,7 @@ This fullstack application contains the following:
 
 -MySql database
 
--Java 8, SpringBoot, JPA (located in the demo folder of this repo)
+-Java 8, SpringBoot, JPA backend project with an embedded Tomcat server (located in the demo folder of this repo)
 
 -VueJs frontend  (located in the client folder of this repo)
 
