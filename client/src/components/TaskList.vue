@@ -33,8 +33,8 @@
             <td>{{ moment(task.dueDate).format('MM/DD/YYYY') }}</td>
             <td>{{ task.status }}</td>
             <!--This passes task.id to url param for updating task. We could have passed object as a prop to reduce unneccesary fetching but i didn't do that.-->
-
             <td><router-link :to="{ path: '/update/'+ task.id }"><a>Update</a></router-link></td>
+
           </tr>
         </tbody>
     </table>

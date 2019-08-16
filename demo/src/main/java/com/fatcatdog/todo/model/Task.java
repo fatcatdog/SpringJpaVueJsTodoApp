@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -21,18 +22,23 @@ public class Task {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
+    @NotNull
 	private Integer id;
 	
     @JsonProperty
+    @NotNull
 	private String name;
 	
     @JsonProperty
+    @NotNull
 	private String description; 
 	
     @JsonProperty
+    @NotNull
 	private Date dueDate;
 	
     @JsonProperty
+    @NotNull
 	private boolean status;
 
     

@@ -89,7 +89,7 @@ export default {
         body: JSON.stringify(task),
         headers: { "Content-type": "application/json; charset=UTF-8" }
       })
-        const data = await response.json()
+        //const data = await response.json()
       } catch (error) {
         console.error(error);
       }

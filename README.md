@@ -12,11 +12,14 @@ At the top of this read.me i provided instructions to run with Docker. Below the
 
 ![Users can update or delete a task](/images/updateTask.png)
 
+UI was not a priority for this project. In public/index.html I simply imported:
+
+<link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+
 ------------------------------------------------------------
 To run with Docker
 ------------------------------------------------------------
 To use the docker commands i have typed below (still a work in progress), please ensure your Application.properties located at /demo/src/main/resources/application.properties contains the following information.  
-
 
 spring.datasource.url=jdbc:mysql://mysql-standalone:3306/tododb
 
@@ -35,7 +38,30 @@ server.port=8081
 I am in the process of setting these projects up to work with Docker. You would need to have Docker running to do this. Here are the current commands to getting the MySql Server running, the Java app running, and the VueJs project running all in individual containers.
 (I ran Docker with MySqlServer 5.7. Make sure these DB settings match your application.properties file in the Java app)
 
+I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open. 
 
+------------------------------------------------------------
+1. Pull MySql container and run MySql Server container
+------------------------------------------------------------
+docker pull mysql:5.7
+
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=password -d mysql:5.7
+
+------------------------------------------------------------
+2. Pull Java app container and run app linked to MySql Server container
+------------------------------------------------------------
+
+docker pull ducheman/ourjavaapp:firsttry
+
+jacobs-Air:~ jacob$ docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
+
+------------------------------------------------------------
+3. Pull VueJs client container and run container
+------------------------------------------------------------
+
+docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
+
+<!---
 ------------------------------------------------------------
 We are first going to get our MySql Server running in Docker.
 ------------------------------------------------------------
@@ -69,6 +95,7 @@ At this point you should have three containers running after you type this comma
 Docker ps
 
 If you see three images running, maybe the application is running and you should check the Vue.js' app's logs to see where it is hosted!
+-->
 
 ------------------------------------------------------------
 To run locally (without Docker)
