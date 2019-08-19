@@ -30,9 +30,8 @@ public class DataLoader implements ApplicationRunner {
 
 		//this inputs three new objects into DB every time application is run. 
 		
-		taskService.save(new Task("first task", "first description", date, false));
-		taskService.save(new Task("second task", "second description", date, true));
-		taskService.save(new Task("third task", "third description third description third description third description", oldDate, false));
+		taskService.save(new Task("first task", "first description", date, 1, false));
+		taskService.save(new Task("second task", "second description second description second description second description", oldDate, 2, true));
 
 	}
 

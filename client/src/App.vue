@@ -1,30 +1,28 @@
+//this is our main app page for our user
 <template>
-  <div id="app"
-    class="small-container"
-  >
-  <div class="title">
-    <h1>TaskApp</h1>
-  </div>
-  <nav>
-  <!-- this is our app's header -->
-    <div class="links">
-      <router-link to='/'>Home(Task List)</router-link>
-      <router-link to='/add'>Add Task</router-link>
-    </div>
-  </nav>
-  <!-- Enabling React Router -->
+  <div id="app" class="small-container">
+    <!-- Header component -->
+    <app-header />
+
+    <!-- Enabling React Router -->
+    <!-- All of our functional components live inside of here -->
     <router-view />
-    <div class="footer">
-      <p>Created with love by Jake Duchen</p>
-    </div>
+
+    <!-- Footer component -->
+    <app-footer />
   </div>
 </template>
 
 <script>
-
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 export default {
   name: 'app',
+  components: {
+    'app-header': Header,
+    'app-footer' : Footer
+  }
   }
 </script>
 
@@ -45,7 +43,7 @@ export default {
  }
 
  .footer {
- text-align: center;
- margin-top: 100px;
+   text-align: center;
+   margin-top: 250px;
  }
 </style>

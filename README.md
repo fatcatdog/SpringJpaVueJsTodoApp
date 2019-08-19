@@ -109,8 +109,6 @@ server.error.whitelabel.enabled=false
 
 server.port=8081
 
-#### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYouWantToNameTheDB
-
 (Notice the bolded lines in application.properties here have variables in them that need to be changed to match your local setup)
 
 Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.

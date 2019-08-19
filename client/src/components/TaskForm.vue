@@ -1,6 +1,11 @@
+//this page renders a form that our users can create a task with
 <template>
   <div id="task-form">
   <h1>Add Task</h1>
+  <div v-if="this.apiIsDown === true">
+  <p>It looks like the API is down currently. Please try again later</p>
+  </div>
+  <div v-else>
     <form @submit.prevent="handleSubmit">
     <label>Task Name</label>
      <input
@@ -35,6 +40,7 @@
           </p>
       <button type="submit" @click.stop.prevent="handleSubmit">Submit</button>
     </form>
+    </div>
   </div>
 </template>
 
@@ -54,20 +60,38 @@ export default {
       submitting: false,
       error: false,
       success: false,
+      apiIsDown: false,
       task: {
         name: '',
         description: '',
         dueDate: '',
+        code: '',
         status: false,
       },
     }
   },
+  mounted(){
+    this.getMaxCode()
+  },
   methods: {
+    async getMaxCode(){
+      try {
+        const response = await fetch('http://localhost:8081/api/getMaxCode')
+        const data = await response.json()
+        this.task.code = data
+        var maxPlusOne = this.task.code + 1;
+        console.log("code is: " + maxPlusOne);
+        this.task.code = maxPlusOne;
+      } catch (error) {
+        this.apiIsDown = true;
+        console.error(error)
+      }
+    },
     handleSubmit() {
       this.submitting = true
       this.clearStatus()
 
-      if (this.invalidName || this.invalidDescription || this.invalidDueDate || this.invalidStatus) {
+      if (this.invalidName || this.invalidDescription || this.invalidDueDate || this.invalidStatus || this.invalidStatus) {
          this.error = true
          return
        }
@@ -78,6 +102,7 @@ export default {
         name: '',
         description: '',
         dueDate: '',
+        code: '',
         status: false,
       }
     },
@@ -112,6 +137,9 @@ export default {
     },
     invalidStatus() {
       return this.task.status === ''
+    },
+    invalidCode() {
+      return this.task.code === ''
     },
   },
   }

@@ -111,5 +111,35 @@ public class TaskController {
    		}
    	}
 	
+    
+	@ApiOperation(value = "Fetch a task by code")
+    @CrossOrigin(origins = "*")
+   	@GetMapping(path="/code/{code}", produces = "application/json; charset=UTF-8") 
+   	public ResponseEntity<?> getTaskByCode (@PathVariable(name = "code") int code) {
+
+		try {
+			Optional<Task> tempTask = taskService.getTaskByCode(code);
+		    logger.info("TaskController - getTaskByCode: " + code);
+    		return new ResponseEntity<>(tempTask, HttpStatus.OK); 
+   		} catch (Exception e) {
+		    logger.error("TaskController - getTaskByCode: " + code);
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+   		}
+   	}
+	
+	@ApiOperation(value = "Fetch max task code")
+    @CrossOrigin(origins = "*")
+   	@GetMapping(path="/getMaxCode", produces = "application/json; charset=UTF-8") 
+   	public ResponseEntity<?> getMaxCode () {
+
+		try {
+			Optional<Integer> tempNumber = taskService.findMaxCode();
+		    logger.info("TaskController - getMaxCode: ");
+    		return new ResponseEntity<>(tempNumber, HttpStatus.OK); 
+   		} catch (Exception e) {
+		    logger.error("TaskController - getMaxCode: ");
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+   		}
+   	}
 	
 }

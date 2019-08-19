@@ -9,6 +9,8 @@ import routes from './routes';
 //You will notice VueRouter is used here to help with navigation
 //as well as Moment to assist with rendering dates in a readable format.
 
+/* eslint-disable */
+
 Vue.config.productionTip = false
 
 Vue.prototype.moment = moment

@@ -1,6 +1,12 @@
+//this page renders our task list to users
 <template>
   <div id="task-list" class="task-list">
       <h1>Task List</h1>
+
+      <div v-if="this.apiIsDown === true">
+      <p>It looks like the API is down currently. Please try again later</p>
+      </div>
+      <div v-else>
       <!--Buttons to allow user to manipulate table-->
       <button v-on:click="refreshList">Refresh All Tasks</button>
       <p>(After sorting with one of the below buttons, please refresh to see all tasks)</p>
@@ -12,14 +18,19 @@
         <button v-on:click="getOutdated">Past Due</button>
       </div>
       <div class="tableStyles">
+      <div v-if="tasks.length < 1">
+        <p>It looks like we don't have any tasks yet.</p>
+        <p>You can add one by clicking the link in the upper right hand corner!</p>
+      </div>
+      <div v-else>
       <thead>
       <!--Table headers-->
         <tr>
+          <th>Code</th>
           <th>Name</th>
           <th>Description</th>
           <th>Due Date</th>
           <th>Completed</th>
-          <th>Update</th>
         </tr>
       </thead>
       <tbody class="ourTable" id="ourTable">
@@ -28,17 +39,19 @@
             v-for="task in tasks"
           >
           <!--Information in each table column-->
+            <td><router-link :to="{ path: '/view/' + task.code }"><a>{{ task.code }}</a></router-link></td>
             <td>{{ task.name }}</td>
             <td>{{ task.description }}</td>
             <td>{{ moment(task.dueDate).format('MM/DD/YYYY') }}</td>
             <td>{{ task.status }}</td>
             <!--This passes task.id to url param for updating task. We could have passed object as a prop to reduce unneccesary fetching but i didn't do that.-->
             <td><router-link :to="{ path: '/update/'+ task.id }"><a>Update</a></router-link></td>
-
           </tr>
         </tbody>
     </table>
     </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -47,6 +60,7 @@
     name: 'task-list',
     data() {
       return {
+        apiIsDown: false,
         tasks: [],
       }
     },
@@ -65,6 +79,7 @@
              const data = await response.json()
              this.tasks =  data
            } catch (error) {
+             this.apiIsDown = true;
              console.error(error)
            }
          },

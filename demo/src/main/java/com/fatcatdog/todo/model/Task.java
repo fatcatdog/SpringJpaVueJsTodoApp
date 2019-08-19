@@ -21,49 +21,60 @@ public class Task {
     @JsonProperty
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
     @NotNull
 	private Integer id;
 	
     @JsonProperty
     @NotNull
+    @Column(name = "name")
 	private String name;
 	
     @JsonProperty
     @NotNull
+    @Column(name = "description")
 	private String description; 
 	
     @JsonProperty
     @NotNull
+    @Column(name = "due_date")
 	private Date dueDate;
-	
+    
     @JsonProperty
     @NotNull
+    @Column(name = "code", unique=true)
+	private int code;
+
+    @JsonProperty
+    @NotNull
+    @Column(name = "status")
 	private boolean status;
 
     
-	public Task(Integer id, String name, String description, Date dueDate, boolean status) {
+	public Task(Integer id, String name, String description, Date dueDate, int code, boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
+		this.code = code;
 		this.status = status;
 	}
 	
-	public Task(String name, String description, Date dueDate, boolean status) {
+	public Task(String name, String description, Date dueDate, int code, boolean status) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
+		this.code = code;
 		this.status = status;
 	}
 	
-	public Task(String name, String description, Date dueDate) {
+	public Task(String name, String description, Date dueDate, int code) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.dueDate = dueDate;
+		this.code = code;
 		this.status = false;
 	}
 	
@@ -109,12 +120,19 @@ public class Task {
 		this.status = status;
 	}
 
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate
-				+ ", status=" + status + "]";
+		return "Task [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate + ", code="
+				+ code + ", status=" + status + "]";
 	}
-	
 	
 
 }

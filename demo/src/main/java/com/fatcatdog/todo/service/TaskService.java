@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fatcatdog.todo.controller.TaskController;
 import com.fatcatdog.todo.model.Task;
 import com.fatcatdog.todo.repository.TaskRepository;
 
@@ -21,6 +20,11 @@ public class TaskService {
 	@Autowired
 	private TaskRepository taskRepository;
 	
+
+	public TaskService(TaskRepository taskRepository) {
+	    this.taskRepository = taskRepository;
+	}
+
 	public Iterable<Task> getAllTasks(){
 
 	    logger.info("TaskService getAllTasks");
@@ -44,6 +48,20 @@ public class TaskService {
 		logger.info("TaskService getTask");
 	    logger.info("Task id: " + id);
 	    return taskRepository.findById(id);
+	}
+
+	public Optional<Task> getTaskByCode(int code) {
+		logger.info("TaskService getTaskByCode");
+	    logger.info("Task code: " + code);
+	    return taskRepository.findByCode(code);
+	}
+	
+	public Optional<Integer> findMaxCode() {
+		logger.info("TaskService getMaxCode");
+		Optional<Integer> number = taskRepository.findMaxCode();
+	    logger.info("Task number: " + number);
+	    
+		return number;
 	}
 	
 }
