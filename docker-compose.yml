@@ -18,12 +18,12 @@ services:
 #
 # docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
   ourjavaapp:
-    image: ducheman/ourjavaapp:secondtry
+    image: ducheman/ourjavaapp:latest
     ports:
       - "8081:8081"
 
 # docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
   ourclientapp:
-    image: ducheman/vuejsclient:firsttry
+    image: ducheman/vuejsclient:latest
     ports:
       - "8080:8080"

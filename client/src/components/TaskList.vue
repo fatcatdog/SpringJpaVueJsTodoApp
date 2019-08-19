@@ -124,7 +124,7 @@
               if(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(cell.innerText)){
                 const ourTempDate = new Date(cell.innerText);
 
-                if (((ourTempDate.getDate() < new Date().getDate()) && ((ourTempDate.getMonth() <= new Date().getMonth())))  || (ourTempDate.getYear() < new Date().getYear())) {
+                if (((ourTempDate.getDate() < new Date().getDate()) && ((ourTempDate.getMonth() <= new Date().getMonth())) && (ourTempDate.getYear() <= new Date().getYear()))  || (ourTempDate.getYear() < new Date().getYear())) {
                   cell.style.color = "red";
                 }
               }
