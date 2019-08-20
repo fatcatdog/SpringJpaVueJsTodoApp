@@ -127,11 +127,12 @@
                 //if dates in the past color is red
                 if (((ourTempDate.getDate() < new Date().getDate()) && ((ourTempDate.getMonth() <= new Date().getMonth())) && (ourTempDate.getYear() < new Date().getYear()))  || (ourTempDate.getYear() < new Date().getYear())) {
                   cell.style.color = "red";
-                }
-
+                } else if (((ourTempDate.getDate() == new Date().getDate()) && ((ourTempDate.getMonth() == new Date().getMonth())) && (ourTempDate.getYear() == new Date().getYear()))) {
                 //if todays date color is green
-                if (((ourTempDate.getDate() == new Date().getDate()) && ((ourTempDate.getMonth() == new Date().getMonth())) && (ourTempDate.getYear() == new Date().getYear()))) {
                   cell.style.color = "green";
+                } else {
+                //if future date color is blue
+                  cell.style.color = "blue";
                 }
               }
               }

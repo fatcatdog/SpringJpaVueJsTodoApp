@@ -1,4 +1,4 @@
-//this is our task update page. it is basically the taskform page with slight differences 
+//this is our task update page. it is basically the taskform page with slight differences
 <template>
   <div id="task-update">
 
@@ -7,26 +7,18 @@
   </div>
 
   <div class="sectionheader">
-  <div v-if="task.name === ''">
-    <div class="sectionbody">
-      <p>It looks like we don't have an image with this code.</p>
-      <p>Please go back to view all tasks :)</p>
-    </div>
-
-  </div>
-  <div v-else>
     <form @submit.prevent="handleSubmit">
     <label>Task Name</label>
      <input
        ref="first"
        type="text"
-       v-model="task.name"
+       v-model.trim="task.name"
      >
      <label>Task Description</label>
       <input
         ref="first"
         type="text"
-        v-model="task.description"
+        v-model.trim="task.description"
       >
       <label>Task Due Date</label>
       <!-- We used VueJsDatePicker to render the fancy calendar on this page -->
@@ -36,7 +28,7 @@
        <input
          ref="first"
          type="checkbox"
-         v-model="task.status"
+         v-model.trim="task.status"
        >
        <p></p>
        <!-- This v-if statement renders an error if present  -->
@@ -52,7 +44,6 @@
           <button type="submit" @click.stop.prevent="deleteTask">Delete</button>
       </div>
     </form>
-    </div>
     </div>
   </div>
 </template>

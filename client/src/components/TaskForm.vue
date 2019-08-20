@@ -11,7 +11,7 @@
      <input
        ref="first"
        type="text"
-       v-model="task.name"
+       v-model.trim="task.name"
        :class="{ 'has-error': submitting && invalidName }"
        @focus="clearStatus"
        @keypress="clearStatus"
@@ -20,7 +20,7 @@
       <input
         ref="first"
         type="text"
-        v-model="task.description"
+        v-model.trim="task.description"
         :class="{ 'has-error': submitting && invalidDescription }"
         @focus="clearStatus"
         @keypress="clearStatus"
