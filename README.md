@@ -1,4 +1,4 @@
-This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Towards the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands likely differ. I still am in the process of implementing testing and logging functionalities.
+This is a "todo" or "task manager" CRUD app. For those who want to run these projects locally without Docker, on my local machine I have Node.js, npm, Maven, Java 8, and MySql 8 running. Towards the bottom of this page I provide instructions on how to configure the SpringBoot project to run locally (requires one file change). I was on a Mac when I built these apps so Windows terminal commands might differ.
 
 This full-stack application contains the following:
 
@@ -11,6 +11,8 @@ This full-stack application contains the following:
 At the top of this README.md i provide instructions to run with Docker Compose, below that i provided instructions for just Docker, and below that I provided instructions on how to run these applications locally without Docker.
 
 I assume to get these projects running successfully you will need to have ports 8080, 8081, and 3306 open.
+
+This was my first time implementing Jest so those tests probably could use a lot of work. Furthermore, this Vue project is basically screaming to be refactored. Currently there is a lot of unnecessary code that could be shared, and the app should probably share some kind of data (or state in React terms) as currently it doesn't.
 
 ![Users can see all tasks](/images/pictureOfTodoApp.png)
 
