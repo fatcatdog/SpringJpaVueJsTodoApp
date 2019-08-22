@@ -68,8 +68,7 @@
       this.addOutdatedStyling()
     },
     mounted(){
-    this.getTasks()
-
+       this.getTasks()
     },
     methods:{
     //our REST API fetch all tasks
@@ -80,7 +79,7 @@
              this.tasks =  data
            } catch (error) {
              this.apiIsDown = true;
-             console.error(error)
+             reject(error)
            }
          },
          //checking if date is today

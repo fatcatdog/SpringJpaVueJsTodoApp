@@ -84,7 +84,7 @@ export default {
         this.task.code = maxPlusOne;
       } catch (error) {
         this.apiIsDown = true;
-        console.error(error)
+        reject.error(error)
       }
     },
     handleSubmit() {

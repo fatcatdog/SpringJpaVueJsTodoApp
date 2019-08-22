@@ -43,15 +43,15 @@ You should see three docker containers running.
 2. Pull Java app container and run app linked to MySql Server container
 ------------------------------------------------------------
 
-#### docker pull ducheman/ourjavaapp:firsttry
+#### docker pull ducheman/ourjavaapp:latest
 
-#### docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:firsttry
+#### docker run -p 8081:8081 --name ourjavaapp --link mysql-standalone:mysql -d ducheman/ourjavaapp:latest
 
 ------------------------------------------------------------
 3. Pull VueJs client container and run container
 ------------------------------------------------------------
 
-#### docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:firsttry
+#### docker run -it -p 8080:8080 --rm --name client ducheman/vuejsclient:latest
 
 <!---
 ------------------------------------------------------------
@@ -95,21 +95,8 @@ If you see three images running, maybe the application is running and you should
 
 Clone the repo. Open your preferred Java IDE of choice, import as maven project.
 
-Please replace the contents of /demo/src/main/resources/application.properties with:
-
-#### spring.datasource.url=jdbc:mysql://localhost:3306/whateverYourYouWantYourDBSchemaIsNamed?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-
-#### spring.datasource.username=whateverYourMysqlUsernameIs
-
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
-
-spring.jpa.hibernate.ddl-auto = update
-
-server.error.whitelabel.enabled=false
-
-server.port=8081
-
-(Notice the bolded lines in application.properties here have variables in them that need to be changed to match your local setup)
+Comment the code that was not commented.
+Uncomment the code that was commented.
 
 Assuming you have Java8, Maven, and MySql set up correctly, you should be able to right click DemoApplication.java: run as SpringBoot project.
 
@@ -126,6 +113,10 @@ UI was not a priority for this project. In public/index.html of the client app, 
 CD into client, then do the following:
 #### npm install
 #### npm run serve
+
+If you want to run the Jest unit tests in the VueJs project,
+
+### npm test
 
 If you ran the java app previously, you should now be able to see some pre-populated items in our task list. If you havent ran the java app yet, you hopefully can see an empty todoApp with no tasks inputted yet (and no database...)!
 
