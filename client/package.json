@@ -34,7 +34,7 @@
     "expect": "^24.8.0",
     "jest": "^24.8.0",
     "jest-fetch-mock": "^2.1.2",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
     "mocha-webpack": "^1.1.0",
